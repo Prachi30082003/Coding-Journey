@@ -1,0 +1,52 @@
+You are given a positive integer n , and you have to find number of ways to represent n as sum of cubes of two integers (let's say A and B) such that n = A^3 + B^3
+
+NOTE -
+1.) A should be greater than or equal to 1 (A>=1)
+2.) B should be greater than or equal to 0 (B>=0)
+3.) (A,B) and (B,A) should be considered different solutions if A is not equal to B , i.e , (A,B) and (B,A) will not be distinct if A=B
+
+SAMPLE INPUT 1 -
+1
+9
+SAMPLE OUTPUT 1-
+2
+EXPLANATION -
+Two ways - (1,2) and (2,1)
+
+SAMPLE INPUT 2 -
+1
+27
+SAMPLE OUTPUT 2 -
+1
+EXPLANATION -
+One way - (3,0)
+
+
+
+
+
+
+#include <bits/stdc++.h> 
+int countCubeSumPairs(int n) {
+    int a = 1;
+    int b = 0;
+   int count=0 ;
+    int c= (a*a*a) + (b*b*b);
+    while(c<=n){
+        c= (a*a*a) + (b*b*b);
+        while(c<=n){
+           if(c==n && a!=b) {
+               count = count +1;
+           }
+            else if (c==n && a==b) {
+                count = count +1;
+            }
+            a=a+1;
+            c= (a*a*a) + (b*b*b);
+        }
+        b=b+1;
+        a=1;
+        c= (a*a*a) + (b*b*b);
+            }
+    return count;
+    }
